@@ -1,0 +1,52 @@
+@model Asset
+@using System.Globalization
+@{
+    ViewData["Title"] = "Eliminar activo";
+}
+
+<div class="mb-3">
+    <a asp-action="Details" asp-route-id="@Model.Id" class="px-btn px-btn-secondary px-btn-sm">&#8592; VOLVER</a>
+</div>
+
+<h1>ELIMINAR ACTIVO</h1>
+
+<div class="row mt-4">
+    <div class="col-12 col-md-7 col-lg-5">
+        <div class="alert alert-warning px-alert mb-4" role="alert">
+            &#9888; ¿Está seguro que desea eliminar este activo? Esta acción no se puede deshacer.
+        </div>
+
+        <div class="px-card mb-4">
+            <div class="p-4">
+                <dl class="row mb-0 px-dl">
+                    <dt class="col-5">Título</dt>
+                    <dd class="col-7 fw-bold">@Model.Title</dd>
+
+                    <dt class="col-5">Plataforma</dt>
+                    <dd class="col-7">@Model.Platform.GetDisplayName()</dd>
+
+                    <dt class="col-5">Año</dt>
+                    <dd class="col-7">@Model.Year</dd>
+
+                    <dt class="col-5">Estado</dt>
+                    <dd class="col-7">@Model.Condition.GetDisplayName()</dd>
+
+                    <dt class="col-5">Valor estimado</dt>
+                    <dd class="col-7">
+                        <span class="px-font fw-bold" style="color:var(--gv-purple)">
+                            $ @Model.EstimatedValue.ToString("N2", new CultureInfo("es-EC"))
+                        </span>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+        <form method="post">
+            @Html.AntiForgeryToken()
+            <div class="d-flex gap-2">
+                <button type="submit" class="px-btn px-btn-danger">&#128465; SÍ, ELIMINAR</button>
+                <a asp-action="Details" asp-route-id="@Model.Id" class="px-btn px-btn-secondary">CANCELAR</a>
+            </div>
+        </form>
+    </div>
+</div>
