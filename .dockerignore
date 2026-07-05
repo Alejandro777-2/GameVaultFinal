@@ -6,3 +6,7 @@ obj/
 .git
 .gitignore
 README.md
+app.db
+app.db-shm
+app.db-wal
+GameVault.db
